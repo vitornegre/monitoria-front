@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teste_pi/screens/tela_horario.dart';
 import 'package:teste_pi/screens/tela_inicial.dart';
+import 'package:teste_pi/screens/tela_login.dart';
 
 void main () {
   runApp(const MyApp());
@@ -27,6 +28,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         '/': (context) => const InitialScreen(),
         '/horario': (context) => const HourScreen(),
+        '/login':(context) =>  LoginScreen(),
       },
     );
   }

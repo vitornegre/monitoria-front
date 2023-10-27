@@ -26,7 +26,7 @@ class _InitialScreenState extends State<InitialScreen> {
         centerTitle: true,
         backgroundColor: Colors.white,
         actions: const [
-           BotaoSair(text: 'Sair', redirect: '/',),
+           BotaoSair(text: 'Sair', redirect: '/login',),
         ],
       ),
       body: const Center(
