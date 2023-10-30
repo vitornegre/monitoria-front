@@ -4,12 +4,12 @@ import 'package:teste_pi/screens/tela_inicial.dart';
 
 
 const users = const {
-  'dribbble@gmail.com': '12345',
+  'vitornegresiolo@gmail.com': '12345',
   'hunter@gmail.com': 'hunter',
 };
 
 class LoginScreen extends StatelessWidget {
-  Duration get loginTime => Duration(milliseconds: 2250);
+  Duration get loginTime => Duration(milliseconds: 1250);
 
   Future<String?> _authUser(LoginData data) {
     debugPrint('Name: ${data.name}, Password: ${data.password}');
@@ -44,7 +44,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      title: 'Site da Monitoria',
+      //title: 'Site da Monitoria',
       logo: AssetImage('assets/images/logo-IMT.png'),
       onLogin: _authUser,
       onSignup: _signupUser,
