@@ -1,5 +1,9 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:teste_pi/components/botao_sair.dart';
+import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HourScreen extends StatefulWidget {
   const HourScreen({Key? key}) : super(key: key);
@@ -30,8 +34,11 @@ class _HourScreenState extends State<HourScreen> {
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
-        actions:  const <Widget>[
-          BotaoSair(text: 'Voltar', redirect: '/',)
+        actions: const <Widget>[
+          BotaoSair(
+            text: 'Voltar',
+            redirect: '/',
+          )
         ],
       ),
       body: Center(
@@ -48,7 +55,7 @@ class _HourScreenState extends State<HourScreen> {
           ),
           child: TextButton(
             onPressed: () {
-              Navigator.of(context).pushReplacementNamed('/');
+              _launchInWebView(Uri.parse("https://bit.ly/monitoria_imt"));
             },
             child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -73,5 +80,11 @@ class _HourScreenState extends State<HourScreen> {
         ),
       ),
     );
+  }
+}
+
+Future<void> _launchInWebView(Uri url) async {
+  if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+    throw Exception('Could not launch $url');
   }
 }
