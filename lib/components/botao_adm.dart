@@ -6,7 +6,7 @@ class BotaoAdm extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(1, 100, 1, 1),
+      padding: const EdgeInsets.fromLTRB(1, 100, 1, 20),
       child:
         Container(
           decoration: BoxDecoration(

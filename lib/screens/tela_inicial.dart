@@ -29,15 +29,17 @@ class _InitialScreenState extends State<InitialScreen> {
            BotaoSair(text: 'Sair', redirect: '/login',),
         ],
       ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children:[
-            IndAdmin(),
-            BotoesMenu(),
-            BotaoAdm(),
-          ],
-        )
+      body: const SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:[
+              IndAdmin(),
+              BotoesMenu(),
+              BotaoAdm(),
+            ],
+          )
+        ),
       ),
     );
   }

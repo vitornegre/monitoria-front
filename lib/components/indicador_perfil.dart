@@ -6,7 +6,7 @@ class IndAdmin extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(1, 1, 1, 100),
+      padding: const EdgeInsets.fromLTRB(1, 20, 1, 100),
       child:
         Container(
           decoration: BoxDecoration(

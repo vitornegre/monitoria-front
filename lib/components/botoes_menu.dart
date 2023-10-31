@@ -94,7 +94,7 @@ class BotoesMenu extends StatelessWidget {
               height: 250,
               child: TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/monitor');
+                  Navigator.of(context).pushReplacementNamed('/monitor');
                 },
                 child: const Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
