@@ -10,13 +10,13 @@ class BotaoGrey extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(1, 25, 25, 25),
+      padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
       child: Container(
         decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(26),
               color: const Color.fromRGBO(131, 131, 131, 1),
         ),
-        width: 300,
+        width: 400,
         height: 50,
         child: TextButton(
           onPressed: () {
