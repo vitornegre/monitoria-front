@@ -44,7 +44,7 @@ class _HourScreenState extends State<HourScreen> {
       body: Center(
         child: Container(
           height: 350,
-          width: 650,
+          width: 450,
           decoration: BoxDecoration(
             color: Colors.green[100],
             borderRadius: BorderRadius.circular(26),
