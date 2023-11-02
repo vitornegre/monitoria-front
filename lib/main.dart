@@ -3,12 +3,13 @@ import 'package:teste_pi/screens/tela_horario.dart';
 import 'package:teste_pi/screens/tela_inicial.dart';
 import 'package:teste_pi/screens/tela_login.dart';
 import 'package:teste_pi/screens/tela_monitor.dart';
+import 'package:teste_pi/screens/tela_ranking.dart';
 
-void main () {
+void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget{
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -25,12 +26,12 @@ class _MyAppState extends State<MyApp> {
       ),
       //home: const InitialScreen(),
       debugShowCheckedModeBanner: false,
-      initialRoute:  '/',
+      initialRoute: '/',
       routes: {
-        '/': (context) => const InitialScreen(),
+        '/': (context) => const TelaRanking(),
         '/horario': (context) => const HourScreen(),
-        '/login':(context) =>  LoginScreen(),
-        '/monitor':(context) =>  MonitorScreen()
+        '/login': (context) => LoginScreen(),
+        '/monitor': (context) => MonitorScreen()
       },
     );
   }
