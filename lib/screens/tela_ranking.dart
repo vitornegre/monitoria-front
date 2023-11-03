@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:teste_pi/adpters/IRankingRepo.dart';
+import 'package:teste_pi/adpters/RankingRepoMock.dart';
+import 'package:teste_pi/adpters/RankingUser.dart';
 import 'package:teste_pi/components/botao_sair.dart';
 
 class TelaRanking extends StatefulWidget {
@@ -37,42 +40,53 @@ class _TelaRankingState extends State<TelaRanking> {
           )
         ],
       ),
-      body: Table(children: [
-        TableRow(children: [
-          Container(
-              color: const Color.fromARGB(255, 74, 182, 98),
-              child: const Text(
-                'Colocação',
-                style: TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-              )),
-          Container(
-              color: const Color.fromARGB(255, 74, 182, 98),
-              child: const Text(
-                'Aluno',
-                style: TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-              )),
-          Container(
-              color: const Color.fromARGB(255, 74, 182, 98),
-              child: const Text(
-                'Pontos',
-                style: TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-              ))
-        ]),
-        TableRow(children: [
-          Text(
-            '1',
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            "Lucas Duez",
-            textAlign: TextAlign.center,
-          ),
-          Text("42", textAlign: TextAlign.center)
-        ])
-      ]),
+      body: Table(children: CreateTableFromRepo()),
     );
+  }
+
+  List<TableRow> CreateTableFromRepo() {
+    IRankingRepo repo = RankingRepoMock();
+
+    List<RankingUser> usersList = repo.GetRanking("1");
+    List<TableRow> listToReturn = [];
+
+    listToReturn.add(TableRow(children: [
+      Container(
+          color: const Color.fromARGB(255, 74, 182, 98),
+          child: const Text(
+            'Colocação',
+            style: TextStyle(color: Colors.white),
+            textAlign: TextAlign.center,
+          )),
+      Container(
+          color: const Color.fromARGB(255, 74, 182, 98),
+          child: const Text(
+            'Aluno',
+            style: TextStyle(color: Colors.white),
+            textAlign: TextAlign.center,
+          )),
+      Container(
+          color: const Color.fromARGB(255, 74, 182, 98),
+          child: const Text(
+            'Pontos',
+            style: TextStyle(color: Colors.white),
+            textAlign: TextAlign.center,
+          ))
+    ]));
+
+    for (var user in usersList) {
+      listToReturn
+          .add(CreateTableRowUser(user.Position, user.Name, user.Pontuation));
+    }
+
+    return listToReturn;
+  }
+
+  TableRow CreateTableRowUser(int position, String name, int pontuation) {
+    return TableRow(children: [
+      Text(position.toString(), textAlign: TextAlign.center),
+      Text(name, textAlign: TextAlign.center),
+      Text(pontuation.toString(), textAlign: TextAlign.center)
+    ]);
   }
 }
