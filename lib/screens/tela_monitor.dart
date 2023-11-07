@@ -41,7 +41,7 @@ class _MonitorScreenState extends State<MonitorScreen>{
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children:[
-            IndAdmin(),
+            IndMonitor(),
             BotaoGrey(text: 'Cadastro de Alunos', redirect: '/cadastro_aluno'),
           ]
         )
