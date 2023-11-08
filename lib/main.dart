@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teste_pi/screens/tela_cadastro.dart';
 import 'package:teste_pi/screens/tela_horario.dart';
 import 'package:teste_pi/screens/tela_inicial.dart';
 import 'package:teste_pi/screens/tela_login.dart';
@@ -28,7 +29,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => const TelaRanking(),
+        '/': (context) => const TelaCadastro(),
         '/horario': (context) => const HourScreen(),
         '/login': (context) => LoginScreen(),
         '/monitor': (context) => MonitorScreen()
