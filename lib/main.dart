@@ -28,10 +28,11 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => const TelaRanking(),
+        '/': (context) => const InitialScreen(),
         '/horario': (context) => const HourScreen(),
         '/login': (context) => LoginScreen(),
-        '/monitor': (context) => MonitorScreen()
+        '/monitor': (context) => MonitorScreen(),
+        '/ranking': (context) => RankingScreen(),
       },
     );
   }

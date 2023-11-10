@@ -1,17 +1,19 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:teste_pi/adpters/IRankingRepo.dart';
 import 'package:teste_pi/adpters/RankingRepoMock.dart';
 import 'package:teste_pi/adpters/RankingUser.dart';
 import 'package:teste_pi/components/botao_sair.dart';
 
-class TelaRanking extends StatefulWidget {
-  const TelaRanking({super.key});
+class RankingScreen extends StatefulWidget {
+  const RankingScreen({super.key});
 
   @override
-  State<TelaRanking> createState() => _TelaRankingState();
+  State<RankingScreen> createState() => _RankingScreenState();
 }
 
-class _TelaRankingState extends State<TelaRanking> {
+class _RankingScreenState extends State<RankingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,24 +55,36 @@ class _TelaRankingState extends State<TelaRanking> {
     listToReturn.add(TableRow(children: [
       Container(
           color: const Color.fromARGB(255, 74, 182, 98),
-          child: const Text(
-            'Colocação',
-            style: TextStyle(color: Colors.white),
-            textAlign: TextAlign.center,
+          height: 40,
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              'Colocação',
+              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
           )),
       Container(
           color: const Color.fromARGB(255, 74, 182, 98),
-          child: const Text(
-            'Aluno',
-            style: TextStyle(color: Colors.white),
-            textAlign: TextAlign.center,
+          height: 40,
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              'Aluno',
+              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
           )),
       Container(
           color: const Color.fromARGB(255, 74, 182, 98),
-          child: const Text(
-            'Pontos',
-            style: TextStyle(color: Colors.white),
-            textAlign: TextAlign.center,
+          height: 40,
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              'Pontos',
+              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
           ))
     ]));
 
@@ -84,9 +98,21 @@ class _TelaRankingState extends State<TelaRanking> {
 
   TableRow CreateTableRowUser(int position, String name, int pontuation) {
     return TableRow(children: [
-      Text(position.toString(), textAlign: TextAlign.center),
-      Text(name, textAlign: TextAlign.center),
-      Text(pontuation.toString(), textAlign: TextAlign.center)
+      Padding(
+        padding: const EdgeInsets.all(28.0),
+        child: Text(position.toString(), style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+      ),
+      Container(
+        color: Colors.grey[200],
+        child: Padding(
+          padding: const EdgeInsets.all(28.0),
+          child: Text(name, style:TextStyle(fontSize: 30), textAlign: TextAlign.center),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(28.0),
+        child: Text(pontuation.toString(), style:TextStyle(fontSize: 30),textAlign: TextAlign.center),
+      )
     ]);
   }
 }

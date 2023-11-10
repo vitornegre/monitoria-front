@@ -70,7 +70,7 @@ class BotoesMenu extends StatelessWidget {
               height: 250,
               child: TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/ranking');
+                   Navigator.of(context).pushReplacementNamed('/ranking');
                 },
                 child: const Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
