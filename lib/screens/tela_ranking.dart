@@ -42,7 +42,9 @@ class _RankingScreenState extends State<RankingScreen> {
           )
         ],
       ),
-      body: Table(children: CreateTableFromRepo()),
+      body: SingleChildScrollView(
+        child: Table(children: CreateTableFromRepo()),
+      ),
     );
   }
 
@@ -102,7 +104,7 @@ class _RankingScreenState extends State<RankingScreen> {
   TableRow CreateTableRowUser(int position, String email, String name, int pontuation) {
     return TableRow(children: [
       Padding(
-        padding: const EdgeInsets.all(28.0),
+        padding: const EdgeInsets.all(32.0),
         child: Text(position.toString(), style:TextStyle(fontSize: 25, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
       ),
       Column(
@@ -111,7 +113,7 @@ class _RankingScreenState extends State<RankingScreen> {
           Container(
             //color: Colors.grey[200],
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 28, 0, 0),
+              padding: const EdgeInsets.fromLTRB(0, 18, 0, 0),
               child: Text(name, style:TextStyle(fontSize: 25, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
             ),
           ),
@@ -121,7 +123,7 @@ class _RankingScreenState extends State<RankingScreen> {
         ],
       ),
       Padding(
-        padding: const EdgeInsets.all(28.0),
+        padding: const EdgeInsets.all(32.0),
         child: Text(pontuation.toString(), style:TextStyle(fontSize: 25, fontWeight: FontWeight.bold),textAlign: TextAlign.center),
       )
     ]);

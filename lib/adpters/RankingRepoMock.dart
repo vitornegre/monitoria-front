@@ -13,6 +13,22 @@ class RankingRepoMock implements IRankingRepo {
     RankingUser("Gandalf", "ganfalf@maua.br", 8, 0),
     RankingUser("Saruman", "saruman@maua.br", 9, 0),
     RankingUser("Sauron", "sauron@gmail.com", 10, 0),
+    RankingUser("Bilbo", "bilbo@maua.br", 11, 0),
+    RankingUser("Gandalf", "ganfalf@maua.br", 12, 0),
+    RankingUser("Saruman", "saruman@maua.br", 13, 0),
+    RankingUser("Sauron", "sauron@gmail.com", 14, 0),
+    RankingUser("Bilbo", "bilbo@maua.br", 15, 0),
+    RankingUser("Gandalf", "ganfalf@maua.br", 16, 0),
+    RankingUser("Saruman", "saruman@maua.br", 17, 0),
+    RankingUser("Sauron", "sauron@gmail.com", 18, 0),
+    RankingUser("Bilbo", "bilbo@maua.br", 19, 0),
+    RankingUser("Gandalf", "ganfalf@maua.br", 20, 0),
+    RankingUser("Saruman", "saruman@maua.br", 21, 0),
+    RankingUser("Sauron", "sauron@gmail.com", 22, 0),
+    RankingUser("Bilbo", "bilbo@maua.br", 23, 0),
+    RankingUser("Gandalf", "ganfalf@maua.br", 24, 0),
+    RankingUser("Saruman", "saruman@maua.br", 25, 0),
+    RankingUser("Sauron", "sauron@gmail.com", 26, 0),
   ];
 
   @override
