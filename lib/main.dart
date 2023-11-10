@@ -23,6 +23,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Teste PI',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'KoHo'
       ),
       //home: const InitialScreen(),
       debugShowCheckedModeBanner: false,

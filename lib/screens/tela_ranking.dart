@@ -55,6 +55,7 @@ class _RankingScreenState extends State<RankingScreen> {
     listToReturn.add(TableRow(children: [
       Container(
           color: const Color.fromARGB(255, 74, 182, 98),
+          margin: const EdgeInsets.fromLTRB(22, 20, 0, 0),
           height: 40,
           child: const Padding(
             padding: EdgeInsets.all(8.0),
@@ -66,6 +67,7 @@ class _RankingScreenState extends State<RankingScreen> {
           )),
       Container(
           color: const Color.fromARGB(255, 74, 182, 98),
+          margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
           height: 40,
           child: const Padding(
             padding: EdgeInsets.all(8.0),
@@ -77,6 +79,7 @@ class _RankingScreenState extends State<RankingScreen> {
           )),
       Container(
           color: const Color.fromARGB(255, 74, 182, 98),
+          margin: const EdgeInsets.fromLTRB(0, 20, 22, 0),
           height: 40,
           child: const Padding(
             padding: EdgeInsets.all(8.0),
@@ -90,28 +93,36 @@ class _RankingScreenState extends State<RankingScreen> {
 
     for (var user in usersList) {
       listToReturn
-          .add(CreateTableRowUser(user.Position, user.Name, user.Pontuation));
+          .add(CreateTableRowUser(user.Position, user.Email, user.Name, user.Pontuation,));
     }
 
     return listToReturn;
   }
 
-  TableRow CreateTableRowUser(int position, String name, int pontuation) {
+  TableRow CreateTableRowUser(int position, String email, String name, int pontuation) {
     return TableRow(children: [
       Padding(
         padding: const EdgeInsets.all(28.0),
-        child: Text(position.toString(), style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+        child: Text(position.toString(), style:TextStyle(fontSize: 25, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
       ),
-      Container(
-        color: Colors.grey[200],
-        child: Padding(
-          padding: const EdgeInsets.all(28.0),
-          child: Text(name, style:TextStyle(fontSize: 30), textAlign: TextAlign.center),
-        ),
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            //color: Colors.grey[200],
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 28, 0, 0),
+              child: Text(name, style:TextStyle(fontSize: 25, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+            ),
+          ),
+          Container(
+            child: Text(email, style:TextStyle(fontSize: 15, color: Color.fromRGBO(43, 71, 167, 1)), textAlign: TextAlign.center)
+          ),
+        ],
       ),
       Padding(
         padding: const EdgeInsets.all(28.0),
-        child: Text(pontuation.toString(), style:TextStyle(fontSize: 30),textAlign: TextAlign.center),
+        child: Text(pontuation.toString(), style:TextStyle(fontSize: 25, fontWeight: FontWeight.bold),textAlign: TextAlign.center),
       )
     ]);
   }
