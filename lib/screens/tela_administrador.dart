@@ -4,14 +4,14 @@ import 'package:teste_pi/components/indicador_perfil.dart';
 
 import '../components/botao_cinza.dart';
 
-class MonitorScreen extends StatefulWidget {
-  const MonitorScreen({Key? key}) : super(key: key);
+class AdminScreen extends StatefulWidget {
+  const AdminScreen({Key? key}) : super(key: key);
 
   @override
-  State<MonitorScreen> createState() => _MonitorScreenState();
+  State<AdminScreen> createState() => _AdminScreenState();
 }
 
-class _MonitorScreenState extends State<MonitorScreen>{
+class _AdminScreenState extends State<AdminScreen>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -27,7 +27,7 @@ class _MonitorScreenState extends State<MonitorScreen>{
           ),
         ),
         title: const Text(
-          'Área do Monitor',
+          'Perfil do Administrador',
           style: TextStyle(
               color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
         ),
@@ -41,11 +41,12 @@ class _MonitorScreenState extends State<MonitorScreen>{
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children:[
-            IndMonitor(),
+            IndAdmin(),
             Padding(
-              padding: EdgeInsets.all(140.0),
-              child: BotaoGrey(text: 'Cadastro de Alunos', redirect: '/cadastro_aluno'),
+              padding: EdgeInsets.fromLTRB(0, 100, 0, 50),
+              child: BotaoGrey(text: 'Cadastro de Perfis', redirect: '/cadastro_perfil'),
             ),
+            BotaoGrey(text: 'Cadastro de Disciplinas', redirect: '/cadastro_disciplina'),
           ]
         )
       ),

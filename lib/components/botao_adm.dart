@@ -17,7 +17,7 @@ class BotaoAdm extends StatelessWidget{
           height: 50,
           child: TextButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/administrador');
+              Navigator.of(context).pushReplacementNamed('/admin');
             },
             child: Text('Acessar Perfil do Administrador', style: TextStyle(color: Colors.white, fontSize: 16),textAlign: TextAlign.center),
           ),

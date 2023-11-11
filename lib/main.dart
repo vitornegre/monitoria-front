@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teste_pi/screens/tela_administrador.dart';
 import 'package:teste_pi/screens/tela_horario.dart';
 import 'package:teste_pi/screens/tela_inicial.dart';
 import 'package:teste_pi/screens/tela_login.dart';
@@ -34,6 +35,7 @@ class _MyAppState extends State<MyApp> {
         '/login': (context) => LoginScreen(),
         '/monitor': (context) => MonitorScreen(),
         '/ranking': (context) => RankingScreen(),
+        '/admin':(context) => const AdminScreen(),
       },
     );
   }
