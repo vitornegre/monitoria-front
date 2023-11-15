@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teste_pi/UserLogin.dart';
+import 'package:teste_pi/adpters/LoginAdapters/UserLogin.dart';
 import 'package:teste_pi/components/botao_sair.dart';
 
 class TelaCadastro extends StatefulWidget {
