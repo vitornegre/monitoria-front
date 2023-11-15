@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:teste_pi/adpters/LoginAdapters/IUserLoginRepo.dart';
 import 'package:teste_pi/adpters/LoginAdapters/UserLogin.dart';
+import 'package:teste_pi/adpters/LoginAdapters/UserLoginRepoMock.dart';
 import 'package:teste_pi/components/botao_sair.dart';
 
 class TelaCadastro extends StatefulWidget {
@@ -12,10 +14,12 @@ class TelaCadastro extends StatefulWidget {
 class _TelaCadastroState extends State<TelaCadastro> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  late String nome;
+  late String name;
   late String email;
-  late String senha;
+  late String password;
   late Roles role;
+
+  IUserLoginRepo userLoginRepo = UserLoginRepoMock();
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +75,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           return null;
                         },
                         onChanged: (value) {
-                          nome = value;
+                          name = value;
                         },
                       ),
                     ),
@@ -111,7 +115,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           return null;
                         },
                         onChanged: (value) {
-                          senha = value;
+                          password = value;
                         },
                       ),
                     ),
@@ -135,12 +139,34 @@ class _TelaCadastroState extends State<TelaCadastro> {
                         hint: const Text("Cargo"),
                       ),
                     ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/cadastrocsv');
+                        },
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Text('Cadastro via CSV',
+                                  style: TextStyle(
+                                      color: Colors.lightBlue,
+                                      fontSize: 16,
+                                      decoration: TextDecoration.underline),
+                                  textAlign: TextAlign.center),
+                            ),
+                          ],
+                        )),
                     Center(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         child: ElevatedButton(
                           onPressed: () {
-                            print(role);
+                            UserLogin user =
+                                UserLogin(name, email, password, role);
+
+                            userLoginRepo.CadastrarUser(user);
+
                           },
                           child: const Text('Cadastrar'),
                         ),
