@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teste_pi/UserLogin.dart';
 import 'package:teste_pi/components/botao_sair.dart';
 
 class TelaCadastro extends StatefulWidget {
@@ -10,6 +11,12 @@ class TelaCadastro extends StatefulWidget {
 
 class _TelaCadastroState extends State<TelaCadastro> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  late String nome;
+  late String email;
+  late String senha;
+  late Roles role;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +70,9 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           }
                           return null;
                         },
+                        onChanged: (value) {
+                          nome = value;
+                        },
                       ),
                     ),
                     Padding(
@@ -79,6 +89,9 @@ class _TelaCadastroState extends State<TelaCadastro> {
                             return 'Please enter some text';
                           }
                           return null;
+                        },
+                        onChanged: (value) {
+                          email = value;
                         },
                       ),
                     ),
@@ -97,6 +110,29 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           }
                           return null;
                         },
+                        onChanged: (value) {
+                          senha = value;
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: DropdownButtonFormField(
+                        items: [
+                          Roles.ADMIN,
+                          Roles.MONITOR,
+                          Roles.PROFESSOR,
+                          Roles.STUDENT
+                        ].map<DropdownMenuItem<Roles>>((value) {
+                          return DropdownMenuItem<Roles>(
+                            value: value,
+                            child: Text(value.name),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          role = value ?? Roles.STUDENT;
+                        },
+                        hint: const Text("Cargo"),
                       ),
                     ),
                     Center(
@@ -104,7 +140,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         child: ElevatedButton(
                           onPressed: () {
-                            print("Enviando alguma coisa");
+                            print(role);
                           },
                           child: const Text('Cadastrar'),
                         ),
