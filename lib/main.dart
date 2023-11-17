@@ -22,21 +22,18 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Teste PI',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'KoHo'
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'KoHo'),
       //home: const InitialScreen(),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (context) => const InitialScreen(),
-        '/horario': (context) => const HourScreen(),
         '/login': (context) => LoginScreen(),
         '/monitor': (context) => MonitorScreen(),
         '/ranking': (context) => RankingScreen(),
-        '/admin':(context) => const AdminScreen(),
+        '/admin': (context) => const AdminScreen(),
       },
     );
   }
+
 }

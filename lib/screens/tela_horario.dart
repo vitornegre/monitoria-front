@@ -55,7 +55,7 @@ class _HourScreenState extends State<HourScreen> {
           ),
           child: TextButton(
             onPressed: () {
-              _launchInWebView(Uri.parse("https://bit.ly/monitoria_imt"));
+              _launchInWebView(Uri.parse("https://bit.ly/monitoriacicsin"));
             },
             child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
