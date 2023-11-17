@@ -1,9 +1,9 @@
 import 'dart:html';
 
 import 'package:flutter/material.dart';
-import 'package:teste_pi/adpters/IRankingRepo.dart';
-import 'package:teste_pi/adpters/RankingRepoMock.dart';
-import 'package:teste_pi/adpters/RankingUser.dart';
+import 'package:teste_pi/adpters/RankingAdapters/IRankingRepo.dart';
+import 'package:teste_pi/adpters/RankingAdapters/RankingRepoMock.dart';
+import 'package:teste_pi/adpters/RankingAdapters/RankingUser.dart';
 import 'package:teste_pi/components/botao_sair.dart';
 
 class RankingScreen extends StatefulWidget {

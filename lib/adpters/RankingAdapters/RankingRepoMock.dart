@@ -1,5 +1,5 @@
-import 'package:teste_pi/adpters/IRankingRepo.dart';
-import 'package:teste_pi/adpters/RankingUser.dart';
+import 'package:teste_pi/adpters/RankingAdapters/IRankingRepo.dart';
+import 'package:teste_pi/adpters/RankingAdapters/RankingUser.dart';
 
 class RankingRepoMock implements IRankingRepo {
   List<RankingUser> allRankingUsers = [
