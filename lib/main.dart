@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teste_pi/screens/tela_administrador.dart';
+import 'package:teste_pi/screens/tela_cadastro.dart';
 import 'package:teste_pi/screens/tela_horario.dart';
 import 'package:teste_pi/screens/tela_inicial.dart';
 import 'package:teste_pi/screens/tela_login.dart';
@@ -21,7 +22,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Teste PI',
+      title: 'Site da Monitoria',
       theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'KoHo'),
       //home: const InitialScreen(),
       debugShowCheckedModeBanner: false,
@@ -29,9 +30,10 @@ class _MyAppState extends State<MyApp> {
       routes: {
         '/': (context) => const InitialScreen(),
         '/login': (context) => LoginScreen(),
-        '/monitor': (context) => MonitorScreen(),
-        '/ranking': (context) => RankingScreen(),
+        '/monitor': (context) => const MonitorScreen(),
+        '/ranking': (context) => const RankingScreen(),
         '/admin': (context) => const AdminScreen(),
+        '/cadastro_perfil': (context) => const TelaCadastro(),
       },
     );
   }

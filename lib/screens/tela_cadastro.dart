@@ -36,7 +36,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
             ),
           ),
           title: const Text(
-            'Cadastro',
+            'Cadastro de Perfil',
             style: TextStyle(
                 color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
           ),
@@ -45,134 +45,154 @@ class _TelaCadastroState extends State<TelaCadastro> {
           actions: const <Widget>[
             BotaoSair(
               text: 'Voltar',
-              redirect: '/',
+              redirect: '/admin',
             )
           ],
         ),
         body: Center(
-          child: SizedBox(
-            width: 400,
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Form(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  key: _formKey,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50))),
-                          hintText: 'Nome',
-                        ),
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                        onChanged: (value) {
-                          name = value;
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50))),
-                          hintText: 'Email',
-                        ),
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                        onChanged: (value) {
-                          email = value;
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50))),
-                          hintText: 'Senha',
-                        ),
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                        onChanged: (value) {
-                          password = value;
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: DropdownButtonFormField(
-                        items: [
-                          Roles.ADMIN,
-                          Roles.MONITOR,
-                          Roles.PROFESSOR,
-                          Roles.STUDENT
-                        ].map<DropdownMenuItem<Roles>>((value) {
-                          return DropdownMenuItem<Roles>(
-                            value: value,
-                            child: Text(value.name),
-                          );
-                        }).toList(),
-                        onChanged: (value) {
-                          role = value ?? Roles.STUDENT;
-                        },
-                        hint: const Text("Cargo"),
-                      ),
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/cadastrocsv');
-                        },
-                        child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: Text('Cadastro via CSV',
-                                  style: TextStyle(
-                                      color: Colors.lightBlue,
-                                      fontSize: 16,
-                                      decoration: TextDecoration.underline),
-                                  textAlign: TextAlign.center),
-                            ),
-                          ],
-                        )),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            UserLogin user =
-                                UserLogin(name, email, password, role);
-
-                            userLoginRepo.CadastrarUser(user);
-
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
+            child: SizedBox(
+              width: 400,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Form(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    key: _formKey,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color.fromRGBO(234, 228, 228, 1),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50))),
+                            hintText: 'Nome',
+                          ),
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
                           },
-                          child: const Text('Cadastrar'),
+                          onChanged: (value) {
+                            name = value;
+                          },
                         ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color.fromRGBO(234, 228, 228, 1),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50))),
+                            hintText: 'Email',
+                          ),
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) {
+                            email = value;
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color.fromRGBO(234, 228, 228, 1),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50))),
+                            hintText: 'Senha',
+                          ),
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) {
+                            password = value;
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: DropdownButtonFormField(
+                          items: [
+                            Roles.ADMIN,
+                            Roles.MONITOR,
+                            Roles.PROFESSOR,
+                            Roles.STUDENT
+                          ].map<DropdownMenuItem<Roles>>((value) {
+                            return DropdownMenuItem<Roles>(
+                              value: value,
+                              child: Text(value.name),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            role = value ?? Roles.STUDENT;
+                          },
+                          hint: const Text("Cargo"),
+                        ),
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/cadastrocsv');
+                          },
+                          child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Center(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                                  child: Text('Cadastro via CSV',
+                                      style: TextStyle(
+                                          color: Colors.lightBlue,
+                                          fontSize: 16,
+                                          decoration: TextDecoration.underline,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                ),
+                              ),
+                            ],
+                          )),
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(26),
+                              color: Color.fromRGBO(26, 151, 221, 1),
+                            ),
+                            width: 138,
+                            height: 38,
+                            child: TextButton(
+                              onPressed: () {
+                                UserLogin user = 
+                                  UserLogin(name, email, password, role);
+          
+                                userLoginRepo.CadastrarUser(user);
+                              },
+                              child: Center(child: Text("Cadastrar", style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),textAlign: TextAlign.center,))
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
