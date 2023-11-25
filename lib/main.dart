@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teste_pi/screens/tela_administrador.dart';
 import 'package:teste_pi/screens/tela_cadastro.dart';
+import 'package:teste_pi/screens/tela_cadastro_alunos.dart';
 import 'package:teste_pi/screens/tela_horario.dart';
 import 'package:teste_pi/screens/tela_inicial.dart';
 import 'package:teste_pi/screens/tela_login.dart';
@@ -34,8 +35,8 @@ class _MyAppState extends State<MyApp> {
         '/ranking': (context) => const RankingScreen(),
         '/admin': (context) => const AdminScreen(),
         '/cadastro_perfil': (context) => const TelaCadastro(),
+        '/cadastro_aluno': (context) => const TelaCadastroAlunos(),
       },
     );
   }
-
 }
