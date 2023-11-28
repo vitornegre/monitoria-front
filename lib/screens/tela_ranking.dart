@@ -14,6 +14,22 @@ class RankingScreen extends StatefulWidget {
 }
 
 class _RankingScreenState extends State<RankingScreen> {
+  bool _isLoading = true;
+  List<TableRow> RankingList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    InitializeRankingList();
+  }
+
+  Future<void> InitializeRankingList() async {
+    RankingList = await CreateTableFromRepo();
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,15 +59,15 @@ class _RankingScreenState extends State<RankingScreen> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Table(children: CreateTableFromRepo()),
+        child: Table(children: _isLoading ? [] : RankingList),
       ),
     );
   }
 
-  List<TableRow> CreateTableFromRepo() {
+  Future<List<TableRow>> CreateTableFromRepo() async {
     IRankingRepo repo = RankingRepoMock();
-
-    List<RankingUser> usersList = repo.GetRanking("1");
+    List<RankingUser> usersList = [];
+    usersList = await repo.GetRanking();
     List<TableRow> listToReturn = [];
 
     listToReturn.add(TableRow(children: [
@@ -63,7 +79,10 @@ class _RankingScreenState extends State<RankingScreen> {
             padding: EdgeInsets.all(8.0),
             child: Text(
               'Colocação',
-              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
           )),
@@ -75,7 +94,10 @@ class _RankingScreenState extends State<RankingScreen> {
             padding: EdgeInsets.all(8.0),
             child: Text(
               'Aluno',
-              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
           )),
@@ -87,25 +109,35 @@ class _RankingScreenState extends State<RankingScreen> {
             padding: EdgeInsets.all(8.0),
             child: Text(
               'Pontos',
-              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
           ))
     ]));
 
     for (var user in usersList) {
-      listToReturn
-          .add(CreateTableRowUser(user.Position, user.Email, user.Name, user.Pontuation,));
+      listToReturn.add(CreateTableRowUser(
+        user.Position,
+        user.Email,
+        user.Name,
+        user.Pontuation,
+      ));
     }
 
     return listToReturn;
   }
 
-  TableRow CreateTableRowUser(int position, String email, String name, int pontuation) {
+  TableRow CreateTableRowUser(
+      int position, String email, String name, int pontuation) {
     return TableRow(children: [
       Padding(
         padding: const EdgeInsets.all(32.0),
-        child: Text(position.toString(), style:TextStyle(fontSize: 25, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+        child: Text(position.toString(),
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center),
       ),
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -114,17 +146,23 @@ class _RankingScreenState extends State<RankingScreen> {
             //color: Colors.grey[200],
             child: Padding(
               padding: const EdgeInsets.fromLTRB(0, 18, 0, 0),
-              child: Text(name, style:TextStyle(fontSize: 25, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+              child: Text(name,
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center),
             ),
           ),
           Container(
-            child: Text(email, style:TextStyle(fontSize: 15, color: Color.fromRGBO(43, 71, 167, 1)), textAlign: TextAlign.center)
-          ),
+              child: Text(email,
+                  style: TextStyle(
+                      fontSize: 15, color: Color.fromRGBO(43, 71, 167, 1)),
+                  textAlign: TextAlign.center)),
         ],
       ),
       Padding(
         padding: const EdgeInsets.all(32.0),
-        child: Text(pontuation.toString(), style:TextStyle(fontSize: 25, fontWeight: FontWeight.bold),textAlign: TextAlign.center),
+        child: Text(pontuation.toString(),
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center),
       )
     ]);
   }
