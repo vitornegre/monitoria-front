@@ -3,7 +3,7 @@ import 'package:teste_pi/screens/tela_administrador.dart';
 import 'package:teste_pi/screens/tela_cadastro.dart';
 import 'package:teste_pi/screens/tela_cadastro_alunos.dart';
 import 'package:teste_pi/screens/tela_cadastro_csv.dart';
-import 'package:teste_pi/screens/tela_horario.dart';
+import 'package:teste_pi/screens/tela_exercicio_aluno.dart';
 import 'package:teste_pi/screens/tela_inicial.dart';
 import 'package:teste_pi/screens/tela_login.dart';
 import 'package:teste_pi/screens/tela_monitor.dart';
@@ -37,7 +37,8 @@ class _MyAppState extends State<MyApp> {
         '/admin': (context) => const AdminScreen(),
         '/cadastro_perfil': (context) => const TelaCadastro(),
         '/cadastro_aluno': (context) => const TelaCadastroAlunos(),
-        '/cadastro_csv': (context) => const CadastroScreenCSV()
+        '/cadastro_csv': (context) => const CadastroScreenCSV(),
+        '/exercicios': (context) => const ExerciseScreenStudent(),
       },
     );
   }
