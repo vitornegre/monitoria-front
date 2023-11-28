@@ -128,7 +128,7 @@ class _TelaCadastroAlunosState extends State<TelaCadastroAlunos> {
                       ),
                       TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/cadastrocsv');
+                            Navigator.of(context).pushReplacementNamed('/cadastro_csv');
                           },
                           child: const Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
