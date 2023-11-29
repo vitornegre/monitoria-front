@@ -6,12 +6,12 @@ class UserLoginRepoMock implements IUserLoginRepo {
       UserLogin("Lucas", "lucas@gmail.com", "1234", Roles.ADMIN);
 
   @override
-  UserLogin CadastrarUser(UserLogin userLogin) {
+  Future<UserLogin>CadastrarUser(UserLogin userLogin) async {
     return userLogin;
   }
 
   @override
-  UserLogin GetCurrentUser() {
+  Future<UserLogin>GetCurrentUser() async {
     return currentUser;
   }
 }

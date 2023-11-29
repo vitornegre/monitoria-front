@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teste_pi/adpters/LoginAdapters/IUserLoginRepo.dart';
 import 'package:teste_pi/adpters/LoginAdapters/UserLogin.dart';
+import 'package:teste_pi/adpters/LoginAdapters/UserLoginBackRepo.dart';
 import 'package:teste_pi/adpters/LoginAdapters/UserLoginRepoMock.dart';
 import 'package:teste_pi/components/botao_sair.dart';
 
@@ -19,7 +20,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
   late String password;
   late Roles role;
 
-  IUserLoginRepo userLoginRepo = UserLoginRepoMock();
+  IUserLoginRepo userLoginRepo = UserLoginBackRepo();
 
   @override
   Widget build(BuildContext context) {
@@ -180,14 +181,21 @@ class _TelaCadastroState extends State<TelaCadastro> {
                             width: 138,
                             height: 38,
                             child: TextButton(
-                              onPressed: () {
-                                UserLogin user = 
-                                  UserLogin(name, email, password, role);
-          
-                                userLoginRepo.CadastrarUser(user);
-                              },
-                              child: Center(child: Text("Cadastrar", style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),textAlign: TextAlign.center,))
-                            ),
+                                onPressed: () async {
+                                  UserLogin user =
+                                      UserLogin(name, email, password, role);
+
+                                  await userLoginRepo.CadastrarUser(user);
+                                },
+                                child: Center(
+                                    child: Text(
+                                  "Cadastrar",
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ))),
                           ),
                         ),
                       ),
