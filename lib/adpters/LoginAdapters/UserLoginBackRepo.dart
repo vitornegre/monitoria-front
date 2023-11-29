@@ -11,17 +11,10 @@ class UserLoginBackRepo implements IUserLoginRepo {
   @override
   Future<UserLogin> CadastrarUser(UserLogin userLogin) async {
     var client = http.Client();
-    var response = await client.post(
-        Uri.parse("http://localhost:8000/create_user"),
-        headers: {},
-        body: {
-          "email": userLogin.Email,
-          "name": userLogin.Name,
-          "role": "STUDENT",
-          "password": userLogin.Password
-        });
-
-    print(response.body);
+    var url = Uri.parse("https://monitoria-api.onrender.com/create_user");
+    var response = await client.post(url,
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode(userLogin.toJson()));
 
     return userLogin;
   }
