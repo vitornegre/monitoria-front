@@ -10,6 +10,15 @@ class UserLogin {
     this.Password = Password;
     this.Role = Role;
   }
+
+  Object? toJson() {
+    return {
+      "name": Name,
+      "email": Email,
+      "password": Password,
+      "role": Role.name.toUpperCase()
+    };
+  }
 }
 
 enum Roles { STUDENT, ADMIN, PROFESSOR, MONITOR }
