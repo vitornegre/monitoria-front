@@ -3,6 +3,7 @@ import 'package:teste_pi/screens/tela_administrador.dart';
 import 'package:teste_pi/screens/tela_cadastro.dart';
 import 'package:teste_pi/screens/tela_cadastro_alunos.dart';
 import 'package:teste_pi/screens/tela_cadastro_csv.dart';
+import 'package:teste_pi/screens/tela_cadastro_disciplinas.dart';
 import 'package:teste_pi/screens/tela_horario.dart';
 import 'package:teste_pi/screens/tela_inicial.dart';
 import 'package:teste_pi/screens/tela_login.dart';
@@ -30,7 +31,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => const InitialScreen(),
+        '/': (context) => const TelaCadastroDisciplinas(),
         '/login': (context) => LoginScreen(),
         '/monitor': (context) => const MonitorScreen(),
         '/ranking': (context) => const RankingScreen(),

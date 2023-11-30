@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:teste_pi/adpters/DisciplineAdapters/Discipline.dart';
+import 'package:teste_pi/adpters/DisciplineAdapters/DisciplineBackRepo.dart';
+import 'package:teste_pi/adpters/DisciplineAdapters/IDisciplineRepo.dart';
 import 'package:teste_pi/adpters/LoginAdapters/IUserLoginRepo.dart';
 import 'package:teste_pi/adpters/LoginAdapters/UserLogin.dart';
-import 'package:teste_pi/adpters/LoginAdapters/UserLoginBackRepo.dart';
 import 'package:teste_pi/adpters/LoginAdapters/UserLoginRepoMock.dart';
 import 'package:teste_pi/components/botao_sair.dart';
 
-class TelaCadastro extends StatefulWidget {
-  const TelaCadastro({super.key});
+class TelaCadastroDisciplinas extends StatefulWidget {
+  const TelaCadastroDisciplinas({super.key});
 
   @override
-  State<TelaCadastro> createState() => _TelaCadastroState();
+  State<TelaCadastroDisciplinas> createState() =>
+      _TelaCadastroDisciplinasState();
 }
 
-class _TelaCadastroState extends State<TelaCadastro> {
+class _TelaCadastroDisciplinasState extends State<TelaCadastroDisciplinas> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   late String name;
-  late String email;
-  late String password;
-  late Roles role;
+  late String disciplineID;
+  late int year;
+  List<String> studentsEmailsList = [];
 
-  IUserLoginRepo userLoginRepo = UserLoginBackRepo();
+  IDisciplineRepo disciplineRepo = DisciplineBackRepo();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
             ),
           ),
           title: const Text(
-            'Cadastro de Perfil',
+            'Cadastro de Disciplina',
             style: TextStyle(
                 color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
           ),
@@ -93,7 +96,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(50))),
-                            hintText: 'Email',
+                            hintText: 'Ano',
                           ),
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
@@ -102,55 +105,13 @@ class _TelaCadastroState extends State<TelaCadastro> {
                             return null;
                           },
                           onChanged: (value) {
-                            email = value;
+                            year = int.parse(value);
                           },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            filled: true,
-                            fillColor: Color.fromRGBO(234, 228, 228, 1),
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50))),
-                            hintText: 'Senha',
-                          ),
-                          validator: (String? value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
-                          onChanged: (value) {
-                            password = value;
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: DropdownButtonFormField(
-                          items: [
-                            Roles.ADMIN,
-                            Roles.MONITOR,
-                            Roles.PROFESSOR,
-                            Roles.STUDENT
-                          ].map<DropdownMenuItem<Roles>>((value) {
-                            return DropdownMenuItem<Roles>(
-                              value: value,
-                              child: Text(value.name),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            role = value ?? Roles.STUDENT;
-                          },
-                          hint: const Text("Cargo"),
                         ),
                       ),
                       TextButton(
                           onPressed: () {
-                            Navigator.of(context).pushReplacementNamed('/cadastro_csv');
+                            Navigator.pushNamed(context, '/cadastrocsv');
                           },
                           child: const Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -181,11 +142,12 @@ class _TelaCadastroState extends State<TelaCadastro> {
                             width: 138,
                             height: 38,
                             child: TextButton(
-                                onPressed: () async {
-                                  UserLogin user =
-                                      UserLogin(name, email, password, role);
-
-                                  await userLoginRepo.CadastrarUser(user);
+                                onPressed: () {
+                                  disciplineRepo.CadastrarDiscipline(Discipline(
+                                      this.name,
+                                      "adsdas",
+                                      this.year,
+                                      this.studentsEmailsList));
                                 },
                                 child: Center(
                                     child: Text(
