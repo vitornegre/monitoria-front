@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:teste_pi/adpters/DisciplineAdapters/Discipline.dart';
+import 'package:teste_pi/adpters/DisciplineAdapters/DisciplineBackRepo.dart';
+import 'package:teste_pi/adpters/DisciplineAdapters/IDisciplineRepo.dart';
 import 'package:teste_pi/adpters/LoginAdapters/IUserLoginRepo.dart';
 import 'package:teste_pi/adpters/LoginAdapters/UserLogin.dart';
-import 'package:teste_pi/adpters/LoginAdapters/UserLoginBackRepo.dart';
 import 'package:teste_pi/adpters/LoginAdapters/UserLoginRepoMock.dart';
 import 'package:teste_pi/components/botao_sair.dart';
 
-class TelaCadastroAlunos extends StatefulWidget {
-  const TelaCadastroAlunos({super.key});
+class TelaCadastroDisciplinas extends StatefulWidget {
+  const TelaCadastroDisciplinas({super.key});
 
   @override
-  State<TelaCadastroAlunos> createState() => _TelaCadastroAlunosState();
+  State<TelaCadastroDisciplinas> createState() =>
+      _TelaCadastroDisciplinasState();
 }
 
-class _TelaCadastroAlunosState extends State<TelaCadastroAlunos> {
+class _TelaCadastroDisciplinasState extends State<TelaCadastroDisciplinas> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   late String name;
-  late String email;
-  late String password;
+  late String disciplineID;
+  late int year;
+  List<String> studentsEmailsList = [];
 
-  IUserLoginRepo userLoginRepo = UserLoginBackRepo();
+  IDisciplineRepo disciplineRepo = DisciplineBackRepo();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,7 @@ class _TelaCadastroAlunosState extends State<TelaCadastroAlunos> {
             ),
           ),
           title: const Text(
-            'Cadastro de Aluno',
+            'Cadastro de Disciplina',
             style: TextStyle(
                 color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
           ),
@@ -92,7 +96,7 @@ class _TelaCadastroAlunosState extends State<TelaCadastroAlunos> {
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(50))),
-                            hintText: 'Email',
+                            hintText: 'Ano',
                           ),
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
@@ -101,35 +105,13 @@ class _TelaCadastroAlunosState extends State<TelaCadastroAlunos> {
                             return null;
                           },
                           onChanged: (value) {
-                            email = value;
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            filled: true,
-                            fillColor: Color.fromRGBO(234, 228, 228, 1),
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50))),
-                            hintText: 'Senha',
-                          ),
-                          validator: (String? value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
-                          onChanged: (value) {
-                            password = value;
+                            year = int.parse(value);
                           },
                         ),
                       ),
                       TextButton(
                           onPressed: () {
-                            Navigator.of(context).pushReplacementNamed('/cadastro_csv');
+                            Navigator.pushNamed(context, '/cadastrocsv');
                           },
                           child: const Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -161,10 +143,11 @@ class _TelaCadastroAlunosState extends State<TelaCadastroAlunos> {
                             height: 38,
                             child: TextButton(
                                 onPressed: () {
-                                  UserLogin user = UserLogin(
-                                      name, email, password, Roles.STUDENT);
-
-                                  userLoginRepo.CadastrarUser(user);
+                                  disciplineRepo.CadastrarDiscipline(Discipline(
+                                      this.name,
+                                      "adsdas",
+                                      this.year,
+                                      this.studentsEmailsList));
                                 },
                                 child: Center(
                                     child: Text(
