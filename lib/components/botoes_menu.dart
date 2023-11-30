@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:teste_pi/adpters/LoginAdapters/UserLogin.dart';
+import 'package:teste_pi/adpters/LoginAdapters/UserLoginBackRepo.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BotoesMenu extends StatelessWidget {
   const BotoesMenu({Key? key}) : super(key: key);
+
+  bool _isUserAllowed(List<Roles> rolesAllowed, UserLogin user) {
+    return rolesAllowed.contains(user.Role);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +35,8 @@ class BotoesMenu extends StatelessWidget {
                 height: 250,
                 child: TextButton(
                     onPressed: () {
-                      _launchInWebView(Uri.parse("https://bit.ly/monitoriacicsin"));
+                      _launchInWebView(
+                          Uri.parse("https://bit.ly/monitoriacicsin"));
                     },
                     child: const Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -51,9 +58,8 @@ class BotoesMenu extends StatelessWidget {
               padding: const EdgeInsets.all(15.0),
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(26),
-                  color: Color.fromRGBO(160, 58, 58, 1),
-                ),
+                    borderRadius: BorderRadius.circular(26),
+                    color: Color.fromRGBO(160, 58, 58, 1)),
                 width: 250,
                 height: 250,
                 child: TextButton(
@@ -105,14 +111,23 @@ class BotoesMenu extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(26),
-                  color: Color.fromRGBO(182, 171, 74, 1),
+                  color: _isUserAllowed(
+                          [Roles.ADMIN, Roles.MONITOR, Roles.PROFESSOR],
+                          UserLoginBackRepo.currentUser)
+                      ? Color.fromRGBO(182, 171, 74, 1)
+                      : Colors.grey,
                 ),
                 width: 250,
                 height: 250,
                 child: TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pushReplacementNamed('/monitor');
-                    },
+                    onPressed: _isUserAllowed(
+                            [Roles.ADMIN, Roles.MONITOR, Roles.PROFESSOR],
+                            UserLoginBackRepo.currentUser)
+                        ? () {
+                            Navigator.of(context)
+                                .pushReplacementNamed('/monitor');
+                          }
+                        : null,
                     child: const Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,

@@ -5,8 +5,8 @@ import 'package:teste_pi/adpters/LoginAdapters/UserLogin.dart';
 import 'package:http/http.dart' as http;
 
 class UserLoginBackRepo implements IUserLoginRepo {
-  UserLogin currentUser =
-      UserLogin("Lucas", "lucas@gmail.com", "1234", Roles.ADMIN);
+  static UserLogin currentUser =
+      UserLogin("Lucas", "lucas@gmail.com", "1234", Roles.STUDENT);
 
   @override
   Future<UserLogin> CadastrarUser(UserLogin userLogin) async {
@@ -22,6 +22,6 @@ class UserLoginBackRepo implements IUserLoginRepo {
 
   @override
   Future<UserLogin> GetCurrentUser() async {
-    return currentUser;
+    return UserLoginBackRepo.currentUser;
   }
 }
