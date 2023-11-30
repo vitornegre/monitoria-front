@@ -6,14 +6,14 @@ import 'package:teste_pi/components/campo_exercicio.dart';
 
 import '../components/icon_exercicio.dart';
 
-class ExerciseScreenStudent extends StatefulWidget {
-  const ExerciseScreenStudent({Key? key}) : super(key: key);
+class AnswerScreen extends StatefulWidget {
+  const AnswerScreen({Key? key}) : super(key: key);
 
   @override
-  State<ExerciseScreenStudent> createState() => _ExerciseScreenStudentState();
+  State<AnswerScreen> createState() => _AnswerScreenState();
 }
 
-class _ExerciseScreenStudentState extends State<ExerciseScreenStudent> {
+class _AnswerScreenState extends State<AnswerScreen> {
   bool _isLoading = true;
   bool _isAnswered = false;
   List<TableRow> ExerciseList = [];
