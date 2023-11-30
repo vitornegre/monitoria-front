@@ -31,14 +31,15 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => const TelaCadastroDisciplinas(),
+        '/': (context) => const InitialScreen(),
         '/login': (context) => LoginScreen(),
         '/monitor': (context) => const MonitorScreen(),
         '/ranking': (context) => const RankingScreen(),
         '/admin': (context) => const AdminScreen(),
         '/cadastro_perfil': (context) => const TelaCadastro(),
         '/cadastro_aluno': (context) => const TelaCadastroAlunos(),
-        '/cadastro_csv': (context) => const CadastroScreenCSV()
+        '/cadastro_csv': (context) => const CadastroScreenCSV(),
+        '/cadastro_disciplina': (context) => const TelaCadastroDisciplinas()
       },
     );
   }
