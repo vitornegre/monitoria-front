@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teste_pi/adpters/LoginAdapters/IUserLoginRepo.dart';
 import 'package:teste_pi/adpters/LoginAdapters/UserLogin.dart';
+import 'package:teste_pi/adpters/LoginAdapters/UserLoginBackRepo.dart';
 import 'package:teste_pi/adpters/LoginAdapters/UserLoginRepoMock.dart';
 import 'package:teste_pi/components/botao_sair.dart';
 
@@ -18,7 +19,7 @@ class _TelaCadastroAlunosState extends State<TelaCadastroAlunos> {
   late String email;
   late String password;
 
-  IUserLoginRepo userLoginRepo = UserLoginRepoMock();
+  IUserLoginRepo userLoginRepo = UserLoginBackRepo();
 
   @override
   Widget build(BuildContext context) {
