@@ -9,7 +9,7 @@ class RankingBackRepo implements IRankingRepo {
   Future<List<RankingUser>> GetRanking() async {
     var client = http.Client();
     var response = await client
-        .get(Uri.parse("http://localhost:8000/get_ranking"), headers: {});
+        .get(Uri.parse("https://monitoria-api.onrender.com/get_ranking"), headers: {});
 
     var json = jsonDecode(response.body);
     var rankingListFromJson = json["body"]["ranking"];
