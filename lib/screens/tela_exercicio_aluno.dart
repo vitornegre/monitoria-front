@@ -45,16 +45,14 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
       body: const SingleChildScrollView(
         child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             IndAluno(),
-            Exercicio(),
-            Exercicio(),
-            Exercicio(),
-            Exercicio(),
-            Exercicio(),
-            Exercicio(),
+            Exercicio(
+              text: 'Qual é o time popularmente conhecido por verdão?',
+            ),
+            Exercicio(
+              text: 'Quem foi o primeiro presidente do Brasil?',
+            ),
           ],
         )),
       ),

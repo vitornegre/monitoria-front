@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => const ExerciseScreen(),
+        '/': (context) => const InitialScreen(),
         '/login': (context) => LoginScreen(),
         '/monitor': (context) => const MonitorScreen(),
         '/ranking': (context) => const RankingScreen(),
