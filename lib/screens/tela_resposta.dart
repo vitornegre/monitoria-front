@@ -49,7 +49,7 @@ class _AnswerScreenState extends State<AnswerScreen> {
           ),
         ),
         title: const Text(
-          'Ranking',
+          'Respostas',
           style: TextStyle(
               color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
         ),
