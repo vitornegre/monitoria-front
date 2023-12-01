@@ -48,7 +48,7 @@ class IndAluno extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(1, 20, 1, 100),
+      padding: const EdgeInsets.fromLTRB(1, 20, 1, 50),
       child:
         Container(
           decoration: BoxDecoration(
