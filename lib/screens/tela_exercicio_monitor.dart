@@ -66,9 +66,11 @@ class _ExerciseScreenMonitorState extends State<ExerciseScreenMonitor> {
             GetUserRoleIndicator(),
             Exercicio(
               text: 'Qual é o time popularmente conhecido por verdão?',
+              exerciseID: "1234",
             ),
             Exercicio(
               text: 'Quem foi o primeiro presidente do Brasil?',
+              exerciseID: "6789",
             ),
           ],
         )),

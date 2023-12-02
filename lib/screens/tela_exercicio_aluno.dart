@@ -49,9 +49,11 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
             IndAluno(),
             Exercicio(
               text: 'Qual é o time popularmente conhecido por verdão?',
+              exerciseID: "1234",
             ),
             Exercicio(
               text: 'Quem foi o primeiro presidente do Brasil?',
+              exerciseID: "6789",
             ),
           ],
         )),
