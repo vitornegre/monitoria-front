@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:teste_pi/adpters/ExercisesAdapters/Exercise.dart';
+import 'package:teste_pi/adpters/ExercisesAdapters/ExerciseBackRepo.dart';
+import 'package:teste_pi/adpters/ExercisesAdapters/IExerciseRepo.dart';
 import 'package:teste_pi/adpters/LoginAdapters/UserLogin.dart';
 import 'package:teste_pi/adpters/LoginAdapters/UserLoginBackRepo.dart';
 import 'package:teste_pi/components/botao_sair.dart';
 import 'package:teste_pi/components/campo_exercicio.dart';
+import 'package:teste_pi/components/campo_exercicio_monitor.dart';
 import 'package:teste_pi/components/indicador_perfil.dart';
 
 class ExerciseScreenMonitor extends StatefulWidget {
@@ -13,6 +17,36 @@ class ExerciseScreenMonitor extends StatefulWidget {
 }
 
 class _ExerciseScreenMonitorState extends State<ExerciseScreenMonitor> {
+  bool _isLoading = true;
+  List<Exercicio> ExerciciosList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    InitializeExerciosList();
+  }
+
+  Future<void> InitializeExerciosList() async {
+    ExerciciosList = await CreateExerciciosList();
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  Future<List<Exercicio>> CreateExerciciosList() async {
+    List<Exercicio> listToReturn = [];
+    IExerciseRepo exerciseRepo = ExerciseBackRepo();
+
+    List<Exercise> allExercises = await exerciseRepo.GetAllExercises();
+
+    for (var exercise in allExercises) {
+      listToReturn.add(
+          Exercicio(text: exercise.Enunciado, exerciseID: exercise.ExerciseId));
+    }
+
+    return listToReturn;
+  }
+
   Widget GetUserRoleIndicator() {
     Roles userRole = UserLoginBackRepo.currentUser.Role;
 
@@ -64,14 +98,9 @@ class _ExerciseScreenMonitorState extends State<ExerciseScreenMonitor> {
             child: Column(
           children: [
             GetUserRoleIndicator(),
-            Exercicio(
-              text: 'Qual é o time popularmente conhecido por verdão?',
-              exerciseID: "1234",
-            ),
-            Exercicio(
-              text: 'Quem foi o primeiro presidente do Brasil?',
-              exerciseID: "6789",
-            ),
+            Column(
+              children: _isLoading ? [] : ExerciciosList,
+            )
           ],
         )),
       ),
