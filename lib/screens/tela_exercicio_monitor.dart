@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:teste_pi/adpters/LoginAdapters/UserLogin.dart';
+import 'package:teste_pi/adpters/LoginAdapters/UserLoginBackRepo.dart';
 import 'package:teste_pi/components/botao_sair.dart';
 import 'package:teste_pi/components/campo_exercicio.dart';
 import 'package:teste_pi/components/indicador_perfil.dart';
@@ -11,6 +13,21 @@ class ExerciseScreenMonitor extends StatefulWidget {
 }
 
 class _ExerciseScreenMonitorState extends State<ExerciseScreenMonitor> {
+  Widget GetUserRoleIndicator() {
+    Roles userRole = UserLoginBackRepo.currentUser.Role;
+
+    switch (userRole) {
+      case Roles.ADMIN:
+        return IndAdmin();
+      case Roles.MONITOR:
+        return IndMonitor();
+      case Roles.PROFESSOR:
+        return IndProfessor();
+      default:
+        return IndMonitor();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,11 +59,11 @@ class _ExerciseScreenMonitorState extends State<ExerciseScreenMonitor> {
           ),
         ],
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Center(
             child: Column(
           children: [
-            IndMonitor(),
+            GetUserRoleIndicator(),
             Exercicio(
               text: 'Qual é o time popularmente conhecido por verdão?',
             ),
