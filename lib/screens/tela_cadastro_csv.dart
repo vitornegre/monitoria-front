@@ -36,7 +36,7 @@ class CadastroScreenCSV extends StatelessWidget {
         body: Container(
           alignment: Alignment.center,
           padding: EdgeInsets.all(16),
-          child: DropzoneWidget(),
+          child: FileUploadWithHttp(),
         ));
   }
 }
