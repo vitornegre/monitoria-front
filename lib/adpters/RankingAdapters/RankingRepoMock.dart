@@ -32,7 +32,7 @@ class RankingRepoMock implements IRankingRepo {
   ];
 
   @override
-  List<RankingUser> GetRanking(String userId) {
+  Future<List<RankingUser>> GetRanking() async {
     return allRankingUsers;
   }
 }
