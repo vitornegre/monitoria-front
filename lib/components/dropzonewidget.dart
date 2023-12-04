@@ -32,14 +32,18 @@ class _FileUploadWithHttpState extends State<FileUploadWithHttp> {
   }
 
   void uploadSelectedFile() async {
+    // we need to prevent Uncaught (in promise) Error: Bad state: Stream has already been listened to. that happens when we press upload button multiple times
+
     //---Create http package multipart request object
     final request = http.MultipartRequest(
       "POST",
       Uri.parse("https://monitoria-api.onrender.com/batch_create_users"),
     );
-    //-----add other fields if needed
-    request.fields["id"] = "abc";
 
+    if (objFile.readStream == null) {
+      print("No file selected.");
+      return;
+    }
     //-----add selected file with request
     request.files.add(new http.MultipartFile(
         "file", objFile.readStream!, objFile.size,
@@ -53,6 +57,17 @@ class _FileUploadWithHttpState extends State<FileUploadWithHttp> {
 
     //-------Your response
     print(result);
+    if (objFile.readStream != null) {
+      // let's refresh the page
+      setState(() {
+        objFile = PlatformFile(
+          name: "No File Selected",
+          size: 0,
+          bytes: Uint8List(0),
+          readStream: null,
+        );
+      });
+    }
   }
 
   @override
