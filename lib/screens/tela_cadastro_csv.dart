@@ -35,7 +35,7 @@ class CadastroScreenCSV extends StatelessWidget {
           actions: const <Widget>[
             BotaoSair(
               text: 'Voltar',
-              redirect: '/admin',
+              redirect: '/',
             )
           ],
         ),
