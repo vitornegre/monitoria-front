@@ -58,28 +58,6 @@ class CadastroDisciplinaScreenCSV extends StatelessWidget {
                   child: FileUploadDisciplineWithHttp(),
                 ),
                 const Text('O arquivo CSV deve conter os campos: Nome e Ano', style: TextStyle(color: Color.fromRGBO(195, 193, 193, 1), fontSize: 18),),
-                TextButton(
-                          onPressed: () {
-                             _launchInWebView(Uri.parse("http://bit.ly/exportar_CSV_OpenLMS"));
-                          },
-                          child: const Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Center(
-                                child: Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                  child: Text('Como exportar o CSV pelo OpenLMS',
-                                      style: TextStyle(
-                                          color: Colors.lightBlue,
-                                          fontSize: 18,
-                                          decoration: TextDecoration.underline,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
-                                ),
-                              ),
-                            ],
-                          )),
               ],
             ),
           ),
