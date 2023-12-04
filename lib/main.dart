@@ -6,6 +6,7 @@ import 'package:teste_pi/screens/tela_cadastro_csv.dart';
 import 'package:teste_pi/screens/tela_exercicio_aluno.dart';
 import 'package:teste_pi/screens/tela_exercicio_monitor.dart';
 import 'package:teste_pi/screens/tela_resposta.dart';
+import 'package:teste_pi/screens/tela_cadastro_disciplina_csv.dart';
 import 'package:teste_pi/screens/tela_cadastro_disciplinas.dart';
 import 'package:teste_pi/screens/tela_horario.dart';
 import 'package:teste_pi/screens/tela_inicial.dart';
@@ -44,6 +45,7 @@ class _MyAppState extends State<MyApp> {
         '/cadastro_csv': (context) => const CadastroScreenCSV(),
         '/respostas': (context) => const AnswerScreen(),
         '/exercicios': (context) => const ExerciseScreen(),
+        '/cadastro_disciplina_csv': (context) => const CadastroDisciplinaScreenCSV(),
         '/cadastro_disciplina': (context) => const TelaCadastroDisciplinas()
       },
     );
