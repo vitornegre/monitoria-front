@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
@@ -11,7 +10,7 @@ class FileUploadWithHttp extends StatefulWidget {
 
 class _FileUploadWithHttpState extends State<FileUploadWithHttp> {
   PlatformFile objFile = PlatformFile(
-    name: "No File Selected",
+    name: "Nenhum arquivo selecionado",
     size: 0,
     bytes: Uint8List(0),
     readStream: null,
@@ -61,16 +60,24 @@ class _FileUploadWithHttpState extends State<FileUploadWithHttp> {
       child: Column(
         children: [
           //------Button to choose file using file picker plugin
-          ElevatedButton(
-              child: Text("Choose File"),
-              onPressed: () => chooseFileUsingFilePicker()),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+            child: ElevatedButton(
+              style: ButtonStyle(fixedSize: MaterialStateProperty.all(Size(200, 40))),
+                child: Text("Selecionar Arquivo", style: TextStyle(fontSize: 20)),
+                onPressed: () => chooseFileUsingFilePicker()),
+          ),
           //------Show file name when file is selected
-          if (objFile != null) Text("File name : ${objFile.name}"),
+          if (objFile != null) Text("Arquivo selecionado : ${objFile.name}"),
           //------Show file size when file is selected
-          if (objFile != null) Text("File size : ${objFile.size} bytes"),
+          if (objFile != null) Text("Tamanho : ${objFile.size} bytes"),
           //------Show upload utton when file is selected
-          ElevatedButton(
-              child: Text("Upload"), onPressed: () => uploadSelectedFile()),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+            child: ElevatedButton(
+              style: ButtonStyle(fixedSize: MaterialStateProperty.all(Size(150, 40)), backgroundColor: MaterialStateProperty.all(Colors.green)),
+                child: Text("Enviar", style: TextStyle(fontSize: 18),), onPressed: () => uploadSelectedFile()),
+          ),
         ],
       ),
     );
