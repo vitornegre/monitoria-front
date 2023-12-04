@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
         '/admin': (context) => const AdminScreen(),
         '/cadastro_perfil': (context) => const TelaCadastro(),
         '/cadastro_aluno': (context) => const TelaCadastroAlunos(),
-        '/cadastro_csv': (context) => const CadastroDisciplinaScreenCSV(),
+        '/cadastro_csv': (context) => const CadastroScreenCSV(),
         '/cadastro_disciplina_csv': (context) => const CadastroDisciplinaScreenCSV()
       },
     );
