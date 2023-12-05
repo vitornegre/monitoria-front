@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'icon_exercicio.dart';
+import 'package:http/http.dart' as http;
 
 class ExercicioMonitor extends StatelessWidget {
   final String text;
@@ -10,6 +13,20 @@ class ExercicioMonitor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _deleteExercise() async {
+      var uri = Uri.parse("https://monitoria-api.onrender.com/delete_exercise?exercise_id=$exerciseID");
+      var response = await http.delete(uri);
+
+      if (response.statusCode != 200) {
+        print("Erro ${response.body}");
+        return;
+      }
+
+      print("Exercicio deletado com sucesso");
+      print(response);
+      (context as Element).reassemble();
+    }
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Wrap(children: [
@@ -66,7 +83,7 @@ class ExercicioMonitor extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: _deleteExercise,
                   child: const Text('Excluir',
                       style: TextStyle(color: Colors.black)),
                   style: ButtonStyle(

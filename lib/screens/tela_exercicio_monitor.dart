@@ -63,6 +63,13 @@ class _ExerciseScreenMonitorState extends State<ExerciseScreenMonitor> {
 
   @override
   Widget build(BuildContext context) {
+    if (UserLoginBackRepo.currentUser == null) {
+      Navigator.of(context).pushReplacementNamed('/login');
+    }
+    if (UserLoginBackRepo.currentUser!.Role != Roles.MONITOR &&
+        UserLoginBackRepo.currentUser!.Role != Roles.ADMIN) {
+      Navigator.of(context).pushReplacementNamed('/');
+    }
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 150,
