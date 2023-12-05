@@ -3,7 +3,7 @@ class Exercise {
   late String Title;
   late String Enunciado;
   late int CreationDateInMiliseconds;
-  late String ExpirationDateInMilisecond;
+  late int ExpirationDateInMilisecond;
   late String CorrectAnswer;
 
   Exercise(
