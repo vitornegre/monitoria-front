@@ -6,7 +6,9 @@ import 'package:http/http.dart' as http;
 
 class UserLoginBackRepo implements IUserLoginRepo {
   static UserLogin currentUser =
-      UserLogin("Lucas", "lucas@gmail.com", "1234", Roles.STUDENT);
+
+      UserLogin("Lucas", "lucas@gmail.com", "1234", Roles.MONITOR);
+
 
   @override
   Future<UserLogin> CadastrarUser(UserLogin userLogin) async {
@@ -16,7 +18,6 @@ class UserLoginBackRepo implements IUserLoginRepo {
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(userLogin.toJson()));
 
-    print(response.body);
     return userLogin;
   }
 

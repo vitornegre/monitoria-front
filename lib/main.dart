@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:teste_pi/adpters/LoginAdapters/UserLogin.dart';
+import 'package:teste_pi/adpters/LoginAdapters/UserLoginBackRepo.dart';
 import 'package:teste_pi/screens/tela_administrador.dart';
 import 'package:teste_pi/screens/tela_cadastro.dart';
 import 'package:teste_pi/screens/tela_cadastro_alunos.dart';
 import 'package:teste_pi/screens/tela_cadastro_csv.dart';
+import 'package:teste_pi/screens/tela_exercicio_aluno.dart';
+import 'package:teste_pi/screens/tela_exercicio_monitor.dart';
+import 'package:teste_pi/screens/tela_resposta.dart';
 import 'package:teste_pi/screens/tela_cadastro_disciplina_csv.dart';
 import 'package:teste_pi/screens/tela_cadastro_disciplinas.dart';
 import 'package:teste_pi/screens/tela_horario.dart';
@@ -40,7 +45,13 @@ class _MyAppState extends State<MyApp> {
         '/cadastro_perfil': (context) => const TelaCadastro(),
         '/cadastro_aluno': (context) => const TelaCadastroAlunos(),
         '/cadastro_csv': (context) => const CadastroScreenCSV(),
-        '/cadastro_disciplina_csv': (context) => const CadastroDisciplinaScreenCSV(),
+        '/respostas': (context) => const AnswerScreen(),
+        '/exercicios': (context) =>
+            UserLoginBackRepo.currentUser.Role == Roles.STUDENT
+                ? ExerciseScreen()
+                : ExerciseScreenMonitor(),
+        '/cadastro_disciplina_csv': (context) =>
+            const CadastroDisciplinaScreenCSV(),
         '/cadastro_disciplina': (context) => const TelaCadastroDisciplinas()
       },
     );

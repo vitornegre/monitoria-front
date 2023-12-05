@@ -85,6 +85,7 @@ class BotoesMenu extends StatelessWidget {
                               userLogin)
                           ? Navigator.pushNamed(context, '/exercicios')
                           : null;
+
                     },
                     child: const Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
