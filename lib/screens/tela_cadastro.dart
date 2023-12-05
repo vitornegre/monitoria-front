@@ -134,7 +134,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           items: [
                             Roles.ADMIN,
                             Roles.MONITOR,
-                            Roles.PROFESSOR,
+                            Roles.TEACHER,
                             Roles.STUDENT
                           ].map<DropdownMenuItem<Roles>>((value) {
                             return DropdownMenuItem<Roles>(
@@ -150,7 +150,8 @@ class _TelaCadastroState extends State<TelaCadastro> {
                       ),
                       TextButton(
                           onPressed: () {
-                            Navigator.of(context).pushReplacementNamed('/cadastro_csv');
+                            Navigator.of(context)
+                                .pushReplacementNamed('/cadastro_csv');
                           },
                           child: const Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

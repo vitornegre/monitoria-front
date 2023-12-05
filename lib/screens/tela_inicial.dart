@@ -7,25 +7,42 @@ import 'package:teste_pi/components/indicador_perfil.dart';
 import '../components/botoes_menu.dart';
 
 class InitialScreen extends StatefulWidget {
-  const InitialScreen({Key? key}) : super(key: key);
+  const InitialScreen({Key? key, this.userLogin}) : super(key: key);
+  final UserLogin? userLogin;
 
   @override
   State<InitialScreen> createState() => _InitialScreenState();
 }
 
 class _InitialScreenState extends State<InitialScreen> {
+  String _loginText() {
+    if (widget.userLogin == null) {
+      return "Login";
+    }
+    return "Sair";
+  }
+
+  Color _loginColor() {
+    if (widget.userLogin == null) {
+      return Color.fromRGBO(0, 71, 133, 1);
+    }
+    return Color.fromRGBO(182, 74, 74, 1);
+  }
+
   StatelessWidget GetUserRoleIndicator() {
-    switch (UserLoginBackRepo.currentUser.Role) {
-      case Roles.STUDENT:
-        return IndAluno();
-      case Roles.MONITOR:
-        return IndMonitor();
-      case Roles.PROFESSOR:
-        return IndProfessor();
+    switch (widget.userLogin?.Role) {
       case Roles.ADMIN:
         return IndAdmin();
-      default:
+      case Roles.MONITOR:
+        return IndMonitor();
+      case Roles.TEACHER:
+        return IndTeacher();
+      case Roles.STUDENT:
         return IndAluno();
+      case null:
+        return IndSemPerfil();
+      default:
+        return IndSemPerfil();
     }
   }
 
@@ -53,10 +70,11 @@ class _InitialScreenState extends State<InitialScreen> {
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
-        actions: const [
+        actions: [
           BotaoSair(
-            text: 'Sair',
+            text: _loginText(),
             redirect: '/login',
+            color: _loginColor(),
           ),
         ],
       ),
@@ -66,8 +84,8 @@ class _InitialScreenState extends State<InitialScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GetUserRoleIndicator(),
-            BotoesMenu(),
-            BotaoAdm(),
+            BotoesMenu(userLogin: widget.userLogin),
+            BotaoAdm(userLogin: widget.userLogin),
           ],
         )),
       ),

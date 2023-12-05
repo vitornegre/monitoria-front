@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class BotaoSair extends StatelessWidget{
   final String text;
   final String redirect;
+  final Color color;
 
-  const BotaoSair({Key? key, required this.text, required this.redirect}) : super(key: key);
+  const BotaoSair({Key? key, required this.text, required this.redirect, this.color = const Color.fromRGBO(182, 74, 74, 1)}) : super(key: key);
 
 
   @override
@@ -14,7 +15,7 @@ class BotaoSair extends StatelessWidget{
       child: Container(
         decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(26),
-              color: const Color.fromRGBO(182, 74, 74, 1),
+              color: color,
         ),
         width: 100,
         height: 30,
