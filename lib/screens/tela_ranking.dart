@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:teste_pi/adpters/LoginAdapters/UserLoginBackRepo.dart';
 import 'package:teste_pi/adpters/RankingAdapters/IRankingRepo.dart';
 import 'package:teste_pi/adpters/RankingAdapters/RankingBackRepo.dart';
 import 'package:teste_pi/adpters/RankingAdapters/RankingRepoMock.dart';
@@ -133,38 +134,42 @@ class _RankingScreenState extends State<RankingScreen> {
 
   TableRow CreateTableRowUser(
       int position, String email, String name, int pontuation) {
-    return TableRow(children: [
-      Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Text(position.toString(),
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center),
-      ),
-      Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+    return TableRow(
+        decoration: email == UserLoginBackRepo.currentUser?.Email
+            ? BoxDecoration(color: const Color.fromARGB(179, 255, 193, 7))
+            : null,
         children: [
-          Container(
-            //color: Colors.grey[200],
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 18, 0, 0),
-              child: Text(name,
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center),
-            ),
+          Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: Text(position.toString(),
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center),
           ),
-          Container(
-              child: Text(email,
-                  style: TextStyle(
-                      fontSize: 15, color: Color.fromRGBO(43, 71, 167, 1)),
-                  textAlign: TextAlign.center)),
-        ],
-      ),
-      Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Text(pontuation.toString(),
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center),
-      )
-    ]);
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 18, 0, 0),
+                  child: Text(name,
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center),
+                ),
+              ),
+              Container(
+                  child: Text(email,
+                      style: TextStyle(
+                          fontSize: 15, color: Color.fromRGBO(43, 71, 167, 1)),
+                      textAlign: TextAlign.center)),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: Text(pontuation.toString(),
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center),
+          )
+        ]);
   }
 }

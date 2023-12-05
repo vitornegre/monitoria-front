@@ -47,15 +47,15 @@ class _ExerciseScreenMonitorState extends State<ExerciseScreenMonitor> {
   }
 
   Widget GetUserRoleIndicator() {
-    Roles userRole = UserLoginBackRepo.currentUser.Role;
+    Roles userRole = UserLoginBackRepo.currentUser!.Role;
 
     switch (userRole) {
       case Roles.ADMIN:
         return IndAdmin();
       case Roles.MONITOR:
         return IndMonitor();
-      case Roles.PROFESSOR:
-        return IndProfessor();
+      case Roles.TEACHER:
+        return IndTeacher();
       default:
         return IndMonitor();
     }

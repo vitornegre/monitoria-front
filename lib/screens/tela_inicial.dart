@@ -16,21 +16,21 @@ class InitialScreen extends StatefulWidget {
 
 class _InitialScreenState extends State<InitialScreen> {
   String _loginText() {
-    if (widget.userLogin == null) {
+    if (UserLoginBackRepo.currentUser == null) {
       return "Login";
     }
     return "Sair";
   }
 
   Color _loginColor() {
-    if (widget.userLogin == null) {
+    if (UserLoginBackRepo.currentUser == null) {
       return Color.fromRGBO(0, 71, 133, 1);
     }
     return Color.fromRGBO(182, 74, 74, 1);
   }
 
   StatelessWidget GetUserRoleIndicator() {
-    switch (widget.userLogin?.Role) {
+    switch (UserLoginBackRepo.currentUser?.Role) {
       case Roles.ADMIN:
         return IndAdmin();
       case Roles.MONITOR:
@@ -84,8 +84,8 @@ class _InitialScreenState extends State<InitialScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GetUserRoleIndicator(),
-            BotoesMenu(userLogin: widget.userLogin),
-            BotaoAdm(userLogin: widget.userLogin),
+            BotoesMenu(userLogin: UserLoginBackRepo.currentUser),
+            BotaoAdm(userLogin: UserLoginBackRepo.currentUser),
           ],
         )),
       ),

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:http/http.dart' as http;
 import 'package:teste_pi/adpters/LoginAdapters/UserLogin.dart';
+import 'package:teste_pi/adpters/LoginAdapters/UserLoginBackRepo.dart';
+import 'package:teste_pi/adpters/LoginAdapters/UserLoginRepoMock.dart';
 import 'package:teste_pi/screens/tela_inicial.dart';
 
 const users = const {
@@ -19,23 +21,18 @@ class LoginScreen extends StatelessWidget {
   Future<String?> _authUser(LoginData data) {
     debugPrint('Name: ${data.name}, Password: ${data.password}');
     return Future.delayed(loginTime).then((_) async {
-      // now we must make a get_user request to the backend. If the user exists, we must create a userLogin object and pass it to the next screen
-      // if the user does not exist, we must return an error message
-
-      // as its a get_user only, we will not be using password (ITS A GET, NOT A POST)
       var client = http.Client();
       var response = await client.get(
           Uri.parse(
               "https://monitoria-api.onrender.com/get_user?email=${data.name}"),
           headers: {"Content-Type": "application/json"});
-      print(response.body);
       if (response.statusCode != 200) {
         print("Erro ${response.body}");
         return response.body;
       }
       var user = UserLogin.fromJson(response.body);
-      print(user.Name);
       userLogin = user;
+      UserLoginBackRepo.currentUser = userLogin!;
       return null;
     });
   }
@@ -43,7 +40,8 @@ class LoginScreen extends StatelessWidget {
   Future<String?> _signupUser(SignupData data) {
     debugPrint('Signup Name: ${data.name}, Password: ${data.password}');
     return Future.delayed(loginTime).then((_) {
-      RegExp email = RegExp(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)");
+      RegExp email =
+          RegExp(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)");
       RegExp password = RegExp(r"^(?=.{8,255}$)");
       if (!email.hasMatch(data.name!)) {
         return "Email inválido";
@@ -55,7 +53,12 @@ class LoginScreen extends StatelessWidget {
       var url = Uri.parse("https://monitoria-api.onrender.com/create_user");
       var response = client.post(url,
           headers: {"Content-Type": "application/json"},
-          body: jsonEncode({"name": data.name, "email": data.name, "password": data.password, "role" : "STUDENT"}));
+          body: jsonEncode({
+            "name": data.name,
+            "email": data.name,
+            "password": data.password,
+            "role": "STUDENT"
+          }));
     });
   }
 

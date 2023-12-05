@@ -56,18 +56,11 @@ class IndAluno extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-
       padding: const EdgeInsets.fromLTRB(1, 20, 1, 50),
-      child:
-        Container(
-          decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(26),
-                color: Color.fromRGBO(26, 151, 221, 1),
-          ),
-          width: 100,
-          height: 30,
-          child: Center(child: const Text('Aluno', style: TextStyle(color: Colors.white, fontSize: 12),textAlign:TextAlign.center,)),
-
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(26),
+          color: Color.fromRGBO(26, 151, 221, 1),
         ),
         width: 100,
         height: 30,
