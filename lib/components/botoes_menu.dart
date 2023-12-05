@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:teste_pi/adpters/LoginAdapters/UserLogin.dart';
-import 'package:teste_pi/adpters/LoginAdapters/UserLoginBackRepo.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BotoesMenu extends StatelessWidget {
-  const BotoesMenu({Key? key}) : super(key: key);
+  final UserLogin? userLogin;
+  const BotoesMenu({Key? key, this.userLogin}) : super(key: key);
 
-  bool _isUserAllowed(List<Roles> rolesAllowed, UserLogin user) {
+  bool _isUserAllowed(List<Roles> rolesAllowed, UserLogin? user) {
+    if (user == null) {
+      return false;
+    }
     return rolesAllowed.contains(user.Role);
   }
 
@@ -29,14 +32,22 @@ class BotoesMenu extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(26),
-                  color: Color.fromRGBO(26, 151, 221, 1),
+                  color: _isUserAllowed(
+                          [Roles.ADMIN, Roles.MONITOR, Roles.TEACHER, Roles.STUDENT],
+                          userLogin)
+                      ? Color.fromRGBO(26, 151, 221, 1)
+                      : Color.fromRGBO(159, 200, 222, 1),
                 ),
                 width: 250,
                 height: 250,
                 child: TextButton(
                     onPressed: () {
-                      _launchInWebView(
-                          Uri.parse("https://bit.ly/monitoriacicsin"));
+                      _isUserAllowed(
+                              [Roles.ADMIN, Roles.MONITOR, Roles.TEACHER, Roles.STUDENT],
+                              userLogin)
+                          ? _launchInWebView(
+                          Uri.parse("https://bit.ly/monitoriacicsin"))
+                          : null;
                     },
                     child: const Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -59,12 +70,21 @@ class BotoesMenu extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(26),
-                    color: Color.fromRGBO(160, 58, 58, 1)),
+                    color: _isUserAllowed(
+                          [Roles.ADMIN, Roles.MONITOR, Roles.TEACHER, Roles.STUDENT],
+                          userLogin)
+                      ? Color.fromRGBO(160, 58, 58, 1)
+                      : Color.fromRGBO(168, 129, 129, 1),
+                ),
                 width: 250,
                 height: 250,
                 child: TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/exercicios');
+                      _isUserAllowed(
+                              [Roles.ADMIN, Roles.MONITOR, Roles.TEACHER, Roles.STUDENT],
+                              userLogin)
+                          ? Navigator.pushNamed(context, '/exercicios')
+                          : null;
                     },
                     child: const Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -86,13 +106,21 @@ class BotoesMenu extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(26),
-                  color: Color.fromRGBO(74, 182, 98, 1),
+                  color: _isUserAllowed(
+                          [Roles.ADMIN, Roles.MONITOR, Roles.TEACHER, Roles.STUDENT],
+                          userLogin)
+                      ? Color.fromRGBO(74, 182, 98, 1)
+                      : Color.fromRGBO(158, 197, 166, 1),
                 ),
                 width: 250,
                 height: 250,
                 child: TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacementNamed('/ranking');
+                      _isUserAllowed(
+                              [Roles.ADMIN, Roles.MONITOR, Roles.TEACHER, Roles.STUDENT],
+                              userLogin)
+                          ? Navigator.of(context).pushReplacementNamed('/ranking')
+                          : null;
                     },
                     child: const Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -112,17 +140,17 @@ class BotoesMenu extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(26),
                   color: _isUserAllowed(
-                          [Roles.ADMIN, Roles.MONITOR, Roles.PROFESSOR],
-                          UserLoginBackRepo.currentUser)
+                          [Roles.ADMIN, Roles.MONITOR, Roles.TEACHER],
+                          userLogin)
                       ? Color.fromRGBO(182, 171, 74, 1)
-                      : Colors.grey,
+                      : Color.fromRGBO(193, 188, 151, 1),
                 ),
                 width: 250,
                 height: 250,
                 child: TextButton(
                     onPressed: _isUserAllowed(
-                            [Roles.ADMIN, Roles.MONITOR, Roles.PROFESSOR],
-                            UserLoginBackRepo.currentUser)
+                            [Roles.ADMIN, Roles.MONITOR, Roles.TEACHER],
+                            userLogin)
                         ? () {
                             Navigator.of(context)
                                 .pushReplacementNamed('/monitor');

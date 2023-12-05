@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class UserLoginBackRepo implements IUserLoginRepo {
   static UserLogin currentUser =
-      UserLogin("Lucas", "lucas@gmail.com", "1234", Roles.PROFESSOR);
+      UserLogin("Lucas", "lucas@gmail.com", "1234", Roles.STUDENT);
 
   @override
   Future<UserLogin> CadastrarUser(UserLogin userLogin) async {

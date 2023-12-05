@@ -34,7 +34,7 @@ class _AdminScreenState extends State<AdminScreen>{
         centerTitle: true,
         backgroundColor: Colors.white,
         actions:  const <Widget>[
-          BotaoSair(text: 'Voltar', redirect: '/',)
+          BotaoSair(text: 'Voltar', redirect: '/', color: Color.fromRGBO(182, 74, 74, 1))
         ],
       ),
       body: const Center(

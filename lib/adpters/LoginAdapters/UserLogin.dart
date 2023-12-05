@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class UserLogin {
   late String Name;
   late String Email;
@@ -19,6 +21,16 @@ class UserLogin {
       "role": Role.name.toUpperCase()
     };
   }
+
+  factory UserLogin.fromJson(String json) {
+    var map = jsonDecode(json);
+    print("Map: $map");
+    print("Map body: ${map["body"]}");
+    print("Map body user: ${map["body"]["user"]}");
+    var user = map["body"]["user"];
+    return UserLogin(user["name"], user["email"], "12345",
+        Roles.values.firstWhere((element) => element.name == user["role"]));
+  }
 }
 
-enum Roles { STUDENT, ADMIN, PROFESSOR, MONITOR }
+enum Roles { STUDENT, ADMIN, TEACHER, MONITOR }
