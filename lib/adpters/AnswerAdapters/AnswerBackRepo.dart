@@ -28,7 +28,25 @@ class AnswerBackRepo implements IAnswerRepo {
   }
 
   @override
-  Future<Answer> UpdateAnswer({required String exercise_id, required int isRight}) async {
+  Future<Answer> UpdateAnswer(
+      {required String exercise_id, required int isRight}) async {
     return Answer("adasd", "asdsda", "asddas", 0);
+  }
+
+  @override
+  Future<Answer> CreateAnswer(Answer answer) async {
+    var client = http.Client();
+    var requestBody = jsonEncode({
+      "exercise_id": answer.exercise_id,
+      "email": answer.email,
+      "content": answer.content,
+      "is_right": answer.is_right
+    });
+    var response = await client.post(
+        Uri.parse("https://monitoria-api.onrender.com/create_answer"),
+        headers: {"Content-Type": "application/json"},
+        body: requestBody);
+
+    return answer;
   }
 }
