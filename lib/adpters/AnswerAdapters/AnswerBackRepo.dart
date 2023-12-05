@@ -20,8 +20,8 @@ class AnswerBackRepo implements IAnswerRepo {
     List<Answer> listToReturn = [];
 
     for (var element in answerListFromJson) {
-      listToReturn.add(Answer(element["exercise_id"], element["email"],
-          element["content"], element["is_right"]));
+      listToReturn.add(Answer(element["exercise_id"].toString(),
+          element["email"], element["content"], element["is_right"]));
     }
 
     return listToReturn;
@@ -37,7 +37,7 @@ class AnswerBackRepo implements IAnswerRepo {
   Future<Answer> CreateAnswer(Answer answer) async {
     var client = http.Client();
     var requestBody = jsonEncode({
-      "exercise_id": answer.exercise_id,
+      "exercise_id": answer.exercise_id.toString(),
       "email": answer.email,
       "content": answer.content,
       "is_right": answer.is_right

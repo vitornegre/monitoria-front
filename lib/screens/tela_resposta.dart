@@ -7,16 +7,19 @@ import 'package:teste_pi/components/campo_exercicio.dart';
 import '../components/icon_exercicio.dart';
 
 class AnswerScreen extends StatefulWidget {
-  const AnswerScreen({Key? key}) : super(key: key);
+  AnswerScreen({required Key? key, required this.exerciseID}) : super(key: key);
+  late String exerciseID;
 
   @override
-  State<AnswerScreen> createState() => _AnswerScreenState();
+  State<AnswerScreen> createState() => _AnswerScreenState(exerciseID);
 }
 
 class _AnswerScreenState extends State<AnswerScreen> {
+  _AnswerScreenState(this.exerciseID);
+
   bool _isLoading = true;
   List<TableRow> ExerciseList = [];
-  String exercise_id = "111-111-111";
+  late String exerciseID;
 
   List<bool> checkBoxList = [];
 
@@ -28,7 +31,7 @@ class _AnswerScreenState extends State<AnswerScreen> {
   }
 
   Future<void> InitializeExerciseList() async {
-    ExerciseList = await CreateTableFromRepo(exercise_id: exercise_id);
+    ExerciseList = await CreateTableFromRepo(exercise_id: exerciseID);
     setState(() {
       _isLoading = false;
     });
@@ -58,7 +61,7 @@ class _AnswerScreenState extends State<AnswerScreen> {
         actions: const <Widget>[
           BotaoSair(
             text: 'Voltar',
-            redirect: '/',
+            redirect: '/exercicios',
           )
         ],
       ),

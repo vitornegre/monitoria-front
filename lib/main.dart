@@ -45,7 +45,6 @@ class _MyAppState extends State<MyApp> {
         '/cadastro_perfil': (context) => const TelaCadastro(),
         '/cadastro_aluno': (context) => const TelaCadastroAlunos(),
         '/cadastro_csv': (context) => const CadastroScreenCSV(),
-        '/respostas': (context) => const AnswerScreen(),
         '/exercicios': (context) =>
             UserLoginBackRepo.currentUser?.Role == Roles.STUDENT
                 ? ExerciseScreen()

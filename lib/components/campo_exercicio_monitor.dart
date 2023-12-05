@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:teste_pi/screens/tela_exercicio_monitor.dart';
+import 'package:teste_pi/screens/tela_resposta.dart';
 import 'icon_exercicio.dart';
 
 class ExercicioMonitor extends StatelessWidget {
@@ -28,7 +30,16 @@ class ExercicioMonitor extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AnswerScreen(
+                                exerciseID: exerciseID,
+                                key: null,
+                              )),
+                    );
+                  },
                   child: const Text(
                     'Respostas',
                     style: TextStyle(color: Colors.black),
