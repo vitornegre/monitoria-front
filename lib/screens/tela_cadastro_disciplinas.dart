@@ -111,7 +111,7 @@ class _TelaCadastroDisciplinasState extends State<TelaCadastroDisciplinas> {
                       ),
                       TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/cadastrocsv');
+                            Navigator.of(context).pushReplacementNamed('/cadastro_disciplina_csv');
                           },
                           child: const Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
