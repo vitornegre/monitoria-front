@@ -5,7 +5,6 @@ import 'package:teste_pi/adpters/ExercisesAdapters/IExerciseRepo.dart';
 import 'package:teste_pi/adpters/LoginAdapters/UserLogin.dart';
 import 'package:teste_pi/adpters/LoginAdapters/UserLoginBackRepo.dart';
 import 'package:teste_pi/components/botao_sair.dart';
-import 'package:teste_pi/components/campo_exercicio.dart';
 import 'package:teste_pi/components/campo_exercicio_monitor.dart';
 import 'package:teste_pi/components/indicador_perfil.dart';
 
@@ -18,7 +17,7 @@ class ExerciseScreenMonitor extends StatefulWidget {
 
 class _ExerciseScreenMonitorState extends State<ExerciseScreenMonitor> {
   bool _isLoading = true;
-  List<Exercicio> ExerciciosList = [];
+  List<ExercicioMonitor> ExerciciosList = [];
 
   @override
   void initState() {
@@ -33,15 +32,15 @@ class _ExerciseScreenMonitorState extends State<ExerciseScreenMonitor> {
     });
   }
 
-  Future<List<Exercicio>> CreateExerciciosList() async {
-    List<Exercicio> listToReturn = [];
+  Future<List<ExercicioMonitor>> CreateExerciciosList() async {
+    List<ExercicioMonitor> listToReturn = [];
     IExerciseRepo exerciseRepo = ExerciseBackRepo();
 
     List<Exercise> allExercises = await exerciseRepo.GetAllExercises();
 
     for (var exercise in allExercises) {
-      listToReturn.add(
-          Exercicio(text: exercise.Enunciado, exerciseID: exercise.ExerciseId));
+      listToReturn.add(ExercicioMonitor(
+          text: exercise.Enunciado, exerciseID: exercise.ExerciseId));
     }
 
     return listToReturn;
